@@ -1,8 +1,5 @@
 import { CategoryType } from "@/entities/categories";
 import type { Driver } from "@/entities/drivers";
-import type { DriverSeasonStats } from "@/entities/drivers/models/types";
-import type { Situation } from "@/entities/situations/models/types";
-import { SituationType } from "@/entities/situations/models/types";
 import { TEAMS } from "@/entities/teams/datasets/data";
 import type { Team } from "@/entities/teams/models/types";
 

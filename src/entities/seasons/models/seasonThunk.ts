@@ -2,7 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import type { SituationOptions } from "@/entities/situations/models/types";
 import type { RootState } from "@/app/store";
 import { updateDriverRating, addSeasonPoints, updateDriverCareer, incrementDriverAge, addSeasonToHistory } from "@/entities/drivers/models/driverSlice";
-import { incrementSeasonSituationCount, setSeasonStats, resolvePendingSituation, simulateRace, simulateSeason, finishSeason } from "./seasonSlice";
+import { incrementSeasonSituationCount, setSeasonStats, resolvePendingSituation, finishSeason } from "./seasonSlice";
 import { SituationType } from "@/entities/situations/models/types";
 import { SeasonStatus } from "./types";
 import { SEASON_SITUATIONS } from "@/entities/situations/datasets/data";

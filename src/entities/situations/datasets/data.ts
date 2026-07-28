@@ -51,6 +51,7 @@ export const DRIVER_SITUATIONS: Situation[] = [
                         dnfs: 0,
                         team: team.id,
                         overall: 0,
+                        rating: 0,
                     };
                     return {
                         ...player,
