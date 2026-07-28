@@ -1,6 +1,6 @@
 // src/pages/CareerModePage.tsx
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useAppDispatch, useAppSelector } from "@/app/store";
 import { CareerModeDriverTrophiesComponent } from '@/features/career-mode-driver-trophies';
 import { CareerModeDriverInformationComponent } from '@/features/career-mode-driver-information';

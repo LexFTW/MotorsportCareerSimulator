@@ -42,7 +42,7 @@ export interface DriverCareer {
     poles: number;
     fastestLaps: number;
     championships: number;
-    constructor: number;
+    constructors: number;
     category: CategoryType;
 }
 

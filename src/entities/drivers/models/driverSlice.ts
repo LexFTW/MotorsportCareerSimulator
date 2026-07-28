@@ -51,7 +51,7 @@ export const driverSlice = createSlice({
         existing.fastestLaps += stats.fastestLaps;
         existing.races += stats.races;
         existing.championships += stats.championships;
-        existing.constructor += stats.constructor;
+        existing.constructors += stats.constructors;
       } else {
         state.player.career.push({ ...stats });
       }

@@ -15,7 +15,6 @@ import forceDrive from '@shared/assets/images/force-drive.png';
 // import kartingImage from '@shared/assets/images/karting.png';
 // import studyImage from '@shared/assets/images/study.png';
 import { CategoryType } from "@/entities/categories/models/types";
-import { TEAMS } from "@/entities/teams/datasets/data";
 import type { DriverSeasonStats } from "@/entities/drivers/models/types";
 import { getOffers } from "@/shared/lib/offers";
 
