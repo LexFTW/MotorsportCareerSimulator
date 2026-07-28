@@ -1,0 +1,44 @@
+.section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.cardHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 2px;
+}
+
+.cardHeaderIndicator {
+    width: 4px;
+    height: 20px;
+    background: var(--primary);
+    border-radius: 2px;
+    flex-shrink: 0;
+}
+
+.cardHeaderTitle {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text);
+    letter-spacing: -0.01em;
+}
+
+.cardDescription {
+    font-family: var(--mono);
+    font-size: 12px;
+    color: var(--text-2);
+    letter-spacing: 0.02em;
+    padding-left: 20px;
+    line-height: 1.4;
+}
+
+.cardIcon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-2);
+    flex-shrink: 0;
+}

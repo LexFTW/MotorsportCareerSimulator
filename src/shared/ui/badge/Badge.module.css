@@ -1,0 +1,28 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: var(--r-full, 9999px);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  background: var(--surface-3);
+  color: var(--text-3);
+  line-height: 1.4;
+}
+
+.positive {
+  background: #4CAF5033;
+  color: #4CAF50;
+}
+
+.negative {
+  background: #F4433633;
+  color: #F44336;
+}
+
+.neutral {
+  background: var(--surface-3);
+  color: var(--text-3);
+}

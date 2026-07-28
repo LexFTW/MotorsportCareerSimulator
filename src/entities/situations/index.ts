@@ -1,0 +1,1 @@
+export { type Situation } from "./models/types";

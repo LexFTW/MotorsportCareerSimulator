@@ -1,0 +1,117 @@
+/* src/widgets/career-mode/ui/CareerModeDriverDecisionComponent.module.css */
+
+.decisionContainer {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+}
+
+.decisionHeader {
+  padding: 1rem 1.25rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.decisionBody {
+  padding: 1rem 1.25rem;
+}
+
+.optionGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+/* Tarjeta de decisión (botón) */
+.decisionButton {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem 1rem;
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+  min-height: 140px;
+  overflow: hidden;
+}
+
+.decisionButton:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+  border-color: var(--primary);
+}
+
+.buttonImageBg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  opacity: 0.15; /* Ajusta según prefieras (0.1 - 0.3) */
+  z-index: 0;
+  pointer-events: none;
+}
+
+.buttonContent {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.buttonLabel {
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-3);
+  font-weight: 600;
+}
+
+.buttonTitle {
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--text);
+  line-height: 1.3;
+}
+
+.buttonBadge {
+  margin-top: 4px;
+}
+
+/* Ajuste para 3 elementos: el tercero ocupa dos columnas */
+.optionGrid > :nth-child(3):last-child {
+  grid-column: 1 / -1;
+  max-width: calc(50% - 0.375rem);
+  justify-self: center;
+}
+
+.noOptions {
+  text-align: center;
+  color: var(--text-3);
+  padding: 1rem 0;
+}
+
+.buttonBadges {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 6px;
+  font-family: var(--mono);
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .optionGrid {
+    grid-template-columns: 1fr;
+  }
+  .optionGrid > :nth-child(3):last-child {
+    grid-column: 1;
+    max-width: 100%;
+  }
+}

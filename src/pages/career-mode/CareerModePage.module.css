@@ -1,0 +1,62 @@
+/* src/pages/CareerModePage/CareerModePage.module.css */
+
+.page {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex;
+  flex-direction: column;
+}
+
+.container {
+  max-width: 1440px; /* Límite para pantallas muy grandes */
+  margin: 0 auto;
+  padding: 1.5rem;
+  flex: 1;
+  width: 100%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr; /* El historial ocupa un 20% más que la otra columna */
+  gap: 1.5rem;
+  align-items: stretch; /* Ambas columnas tendrán la misma altura */
+}
+
+.col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem; /* Espaciado uniforme entre componentes */
+}
+
+.colHistory {
+  display: flex;
+  flex-direction: column;
+  /* Ocupa toda la altura disponible gracias a stretch */
+}
+
+/* Responsive: en móviles, una sola columna */
+@media (max-width: 820px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .container {
+    padding: 1rem;
+  }
+}
+
+/* Ajuste fino para pantallas muy pequeñas */
+@media (max-width: 480px) {
+  .container {
+    padding: 0.75rem;
+  }
+
+  .grid {
+    gap: 1rem;
+  }
+
+  .col {
+    gap: 1rem;
+  }
+}

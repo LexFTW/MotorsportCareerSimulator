@@ -1,0 +1,437 @@
+import { SituationType, type Situation } from "../models/types";
+
+import boxImage from '@shared/assets/images/box.png';
+import continueRacingImage from '@shared/assets/images/continue-racing-sc.png';
+import rainImage from '@shared/assets/images/rain.png';
+import penaltyImage from '@shared/assets/images/penalty.png';
+import injuryImage from '@shared/assets/images/injury.png';
+import sponsorImage from '@shared/assets/images/sponsor.png';
+import teammateImage from '@shared/assets/images/teammate.png';
+import engineImage from '@shared/assets/images/engine.png';
+import podiumImage from '@shared/assets/images/podium.png';
+import noRetirementImage from '@shared/assets/images/no-retirement.png';
+import retirementImage from '@shared/assets/images/retirement.png';
+import forceDrive from '@shared/assets/images/force-drive.png';
+import { CategoryType } from "@/entities/categories/models/types";
+
+export const DRIVER_SITUATIONS: Situation[] = [
+    {
+        title: 'Retiro de la competición',
+        description: 'Los malos resultados en las últimas temporadas te han llevado a considerar el retiro de la competición.',
+        type: SituationType.DriverSituation,
+        trigger: [
+            {
+                category: CategoryType.F1,
+            },
+            {
+                category: CategoryType.INDYCAR,
+            },
+            {
+                category: CategoryType.WEC
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Seguir compitiendo',
+                description: 'Decides seguir compitiendo a pesar de los malos resultados, buscando mejorar en la próxima temporada.',
+                image: noRetirementImage,
+                badges: {
+                    positive: { text: 'Determinación y espíritu de lucha', probability: 0.7, value: 0 },
+                    negative: { text: 'Riesgo de más malos resultados', probability: 0.3, value: -5 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Aceptar el retiro',
+                description: 'Aceptar el retiro y finalizar tu carrera como piloto.',
+                image: retirementImage,
+                badges: {
+                    positive: { text: 'Finalizar carrera con dignidad', probability: 0.5, value: 0 }
+                }
+            }
+        ]
+    },
+    {
+        title: 'Lesión en entrenamientos',
+        description: 'Has sufrido una lesión durante los entrenamientos libres. Los médicos te recomiendan descansar, pero podrías forzar para correr.',
+        type: SituationType.DriverSituation,
+        trigger: [
+            {
+                category: CategoryType.F1,
+            },
+            {
+                category: CategoryType.INDYCAR,
+            },
+            {
+                category: CategoryType.WEC
+            },
+            {
+                category: CategoryType.F2,
+            },
+            {
+                category: CategoryType.F3
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Descansar y recuperarse',
+                description: 'Sigues el consejo médico y descansas para recuperarte completamente.',
+                image: injuryImage,
+                badges: {
+                    positive: { text: 'Recuperación completa', probability: 0.9, value: 0 },
+                    negative: { text: 'Perder la carrera', probability: 0.1, value: -2 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Forzar y competir',
+                description: 'Decides competir a pesar de la lesión, arriesgando tu salud pero demostrando tu compromiso.',
+                image: forceDrive,
+                badges: {
+                    positive: { text: 'Demostrar valentía', probability: 0.4, value: 1 },
+                    negative: { text: 'Empeorar la lesión', probability: 0.6, value: -5 }
+                }
+            }
+        ]
+    },
+    {
+        title: 'Oportunidad de patrocinio',
+        description: 'Una marca importante quiere patrocinarte, pero eso implica cambiar tu imagen y compromisos publicitarios.',
+        type: SituationType.DriverSituation,
+        trigger: [
+            {
+                category: CategoryType.F1,
+            },
+            {
+                category: CategoryType.INDYCAR,
+            },
+            {
+                category: CategoryType.WEC
+            },
+            {
+                category: CategoryType.F2,
+            },
+            {
+                category: CategoryType.F3
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Aceptar el patrocinio',
+                description: 'Aceptas el patrocinio y obtienes financiación extra, pero con más compromisos.',
+                image: sponsorImage,
+                badges: {
+                    positive: { text: 'Ingresos extra y visibilidad', probability: 0.7, value: 1 },
+                    negative: { text: 'Más presión publicitaria', probability: 0.3, value: -1 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Rechazar el patrocinio',
+                description: 'Mantienes tu independencia y te centras exclusivamente en las carreras.',
+                badges: {
+                    positive: { text: 'Libertad y enfoque', probability: 0.5, value: 0 },
+                    negative: { text: 'Perder financiación', probability: 0.5, value: 0 }
+                }
+            }
+        ]
+    }
+];
+
+export const SEASON_SITUATIONS: Situation[] = [
+    {
+        title: 'Safety Car en pista',
+        description: 'Están ante las últimas vueltas de la carrera y alguien sufre un grave accidente, dirección de carrera despliega el coche de seguridad y se reagrupa el pelotón.',
+        type: SituationType.SeasonSituation,
+        trigger: [
+            {
+                category: CategoryType.F1,
+            },
+            {
+                category: CategoryType.INDYCAR,
+            },
+            {
+                category: CategoryType.F2,
+            },
+            {
+                category: CategoryType.F3
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Mantenerse en pista',
+                description: 'Decides mantenerte en pista y aprovechar la oportunidad para adelantar en la clasificación a tus rivales que han parado en boxes.',
+                image: continueRacingImage,
+                badges: {
+                    positive: { text: 'Oportunidad de adelantar a rivales', probability: 0.6, value: 1 },
+                    negative: { text: 'Riesgo de perder posiciones', probability: 0.4, value: -1 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Entrar a boxes',
+                description: 'Decides entrar a boxes para cambiar neumáticos e intentar subir puestos.',
+                image: boxImage,
+                badges: {
+                    positive: { text: 'Mejorar el rendimiento del coche', probability: 0.6, value: 1 },
+                    negative: { text: 'Riesgo de perder posiciones', probability: 0.4, value: -1 }
+                }
+            }
+        ]
+    },
+    {
+        title: 'Condiciones climáticas extremas',
+        description: 'La lluvia intensa está haciendo la pista muy peligrosa. ¿Qué estrategia adoptas?',
+        type: SituationType.SeasonSituation,
+        trigger: [
+            {
+                category: CategoryType.F1,
+            },
+            {
+                category: CategoryType.INDYCAR,
+            },
+            {
+                category: CategoryType.WEC
+            },
+            {
+                category: CategoryType.F2,
+            },
+            {
+                category: CategoryType.F3
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Seguir con neumáticos de seco',
+                description: 'Decides arriesgarte y mantener los neumáticos de seco, esperando que escampe.',
+                image: rainImage,
+                badges: {
+                    positive: { text: 'Ventaja si escampa pronto', probability: 0.3, value: 1 },
+                    negative: { text: 'Peligro extremo en pista', probability: 0.7, value: -2 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Cambiar a neumáticos de lluvia',
+                description: 'Decides entrar a boxes para poner neumáticos de lluvia y tener mayor seguridad.',
+                badges: {
+                    positive: { text: 'Mayor seguridad y adherencia', probability: 0.8, value: 1 },
+                    negative: { text: 'Mala opción si escampa', probability: 0.2, value: -1 }
+                }
+            }
+        ]
+    },
+    {
+        title: 'Sanción por exceder los límites',
+        description: 'La FIA te ha sancionado con una penalización de 5 segundos por exceder los límites de la pista en varias ocasiones.',
+        type: SituationType.SeasonSituation,
+        trigger: [
+            {
+                category: CategoryType.F1,
+            },
+            {
+                category: CategoryType.F2,
+            },
+            {
+                category: CategoryType.F3
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Cumplir la sanción',
+                description: 'Aceptas la sanción y la cumples durante la siguiente parada en boxes.',
+                image: penaltyImage,
+                badges: {
+                    positive: { text: 'Deportividad y aceptación', probability: 0.9, value: 1 },
+                    negative: { text: 'Pérdida de tiempo en carrera', probability: 0.1, value: -1 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Apelar la decisión',
+                description: 'Decides apelar la sanción, lo que podría resultar en una reducción o en una penalización mayor.',
+                badges: {
+                    positive: { text: 'Posible reducción de la sanción', probability: 0.4, value: 1 },
+                    negative: { text: 'Sanción mayor si se rechaza', probability: 0.6, value: -1 }
+                }
+            }
+        ]
+    },
+    {
+        title: 'Problema mecánico en el coche',
+        description: 'El motor de tu coche empieza a fallar en plena carrera. ¿Qué haces?',
+        type: SituationType.SeasonSituation,
+        trigger: [
+            {
+                category: CategoryType.F1,
+            },
+            {
+                category: CategoryType.INDYCAR,
+            },
+            {
+                category: CategoryType.WEC
+            },
+            {
+                category: CategoryType.F2,
+            },
+            {
+                category: CategoryType.F3
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Seguir en pista',
+                description: 'Decides seguir forzando el motor, esperando que aguante hasta el final.',
+                image: engineImage,
+                badges: {
+                    positive: { text: 'Posible victoria si aguanta', probability: 0.2, value: 2 },
+                    negative: { text: 'Riesgo de abandono', probability: 0.8, value: -2 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Entrar a boxes',
+                description: 'Decides entrar a boxes para revisar el problema y evitar un abandono definitivo.',
+                badges: {
+                    positive: { text: 'Evitar un abandono seguro', probability: 0.8, value: 2 },
+                    negative: { text: 'Perder tiempo valioso', probability: 0.2, value: -2 }
+                }
+            }
+        ]
+    },
+    {
+        title: 'Lucha por el podio',
+        description: 'Estás en cuarta posición a pocas vueltas del final. El tercer clasificado está mostrando problemas.',
+        type: SituationType.SeasonSituation,
+        trigger: [
+            {
+                category: CategoryType.F1,
+            },
+            {
+                category: CategoryType.INDYCAR,
+            },
+            {
+                category: CategoryType.WEC
+            },
+            {
+                category: CategoryType.F2,
+            },
+            {
+                category: CategoryType.F3
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Atacar al tercero',
+                description: 'Decides atacar con todo para intentar conseguir el tercer puesto.',
+                image: podiumImage,
+                badges: {
+                    positive: { text: 'Podio asegurado', probability: 0.7, value: 3 },
+                    negative: { text: 'Riesgo de perder la posición', probability: 0.3, value: -3 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Mantener la posición',
+                description: 'Decides mantener tu posición, sin arriesgar.',
+                badges: {
+                    positive: { text: 'Puntos asegurados', probability: 0.9, value: 2 },
+                    negative: { text: 'Rotura del motor', probability: 0.1, value: -3 }
+                }
+            }
+        ]
+    },
+    {
+        title: 'Desgaste de neumáticos',
+        description: 'Los neumáticos delanteros están mostrando desgaste prematuro. La estrategia de carrera se complica.',
+        type: SituationType.SeasonSituation,
+        trigger: [
+            {
+                category: CategoryType.F1,
+            },
+            {
+                category: CategoryType.INDYCAR,
+            },
+            {
+                category: CategoryType.WEC
+            },
+            {
+                category: CategoryType.F2,
+            },
+            {
+                category: CategoryType.F3
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Parar en boxes',
+                description: 'Decides hacer una parada adicional para cambiar los neumáticos.',
+                image: boxImage,
+                badges: {
+                    positive: { text: 'Seguridad y rendimiento', probability: 0.7, value: 2 },
+                    negative: { text: 'Pérdida de tiempo', probability: 0.3, value: -2 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Seguir en pista',
+                description: 'Decides gestionar los neumáticos y seguir en pista, reduciendo el ritmo.',
+                badges: {
+                    positive: { text: 'Ahorrar tiempo en boxes', probability: 0.5, value: 1 },
+                    negative: { text: 'Rendimiento reducido', probability: 0.5, value: -1 }
+                }
+            }
+        ]
+    },
+    {
+        title: 'Rivalidad con el compañero de equipo',
+        description: 'Tu compañero de equipo te está presionando en carrera. La tensión es alta y ambos queremos la victoria. Recibes instrucciones del equipo para que dejes pasar a tu compañero.',
+        type: SituationType.SeasonSituation,
+        trigger: [
+            {
+                category: CategoryType.F1,
+            },
+            {
+                category: CategoryType.INDYCAR,
+            },
+            {
+                category: CategoryType.WEC
+            },
+            {
+                category: CategoryType.F2,
+            },
+            {
+                category: CategoryType.F3
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Competir al máximo',
+                description: 'Decides competir sin concesiones, buscando demostrar quién es mejor.',
+                badges: {
+                    positive: { text: 'Demostrar superioridad', probability: 0.6, value: 2 },
+                    negative: { text: 'Riesgo de accidente', probability: 0.4, value: -2 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Aceptar la instrucción y dejar pasar',
+                description: 'Decides seguir las instrucciones del equipo y dejar pasar a tu compañero.',
+                image: teammateImage,
+                badges: {
+                    positive: { text: 'Trabajo en equipo', probability: 1, value: 2 }
+                }
+            },
+        ]
+    }
+];

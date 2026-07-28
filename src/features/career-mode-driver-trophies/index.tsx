@@ -1,0 +1,1 @@
+export { CareerModeDriverTrophiesComponent } from './CareerModeDriverTrophiesComponent';

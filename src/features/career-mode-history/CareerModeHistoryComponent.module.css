@@ -1,0 +1,185 @@
+/* src/features/career-mode-history/CareerModeHistoryComponent.module.css */
+
+.section {
+  background: var(--surface);
+  border-radius: var(--r-lg);
+  border: 1px solid var(--border);
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  min-height: 400px;
+  height: 100%;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.title {
+  font-weight: 900;
+  font-size: 20px;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.subtitle {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  color: var(--text-3);
+  text-transform: uppercase;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 4px;
+}
+
+.table thead th {
+  padding: 6px 8px;
+  font-size: 10px;
+  letter-spacing: 0.08em;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-3);
+  text-align: left;
+}
+
+.table thead th:not(:first-child):not(:nth-child(2)) {
+  text-align: right;
+}
+
+.table tbody td {
+  padding: 6px 8px;
+  font-size: 13px;
+  color: var(--text);
+  vertical-align: middle;
+}
+
+/* Columna Año */
+.yearCell {
+  font-weight: 700;
+  font-family: var(--mono);
+  color: var(--text-2);
+  width: 1%;
+  white-space: nowrap;
+}
+
+/* Columna Equipo */
+.teamCell {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.teamLogoWrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: var(--r-sm);
+  flex-shrink: 0;
+}
+
+.teamName {
+  font-weight: 600;
+  color: var(--text);
+  white-space: nowrap;
+}
+
+/* Columna OVR (Rating) */
+.ratingCell {
+  text-align: right;
+}
+
+.ratingCell span {
+  display: inline-block;
+  padding: 2px 10px;
+  border-radius: var(--r-sm);
+  font-weight: 700;
+  font-size: 13px;
+  min-width: 36px;
+  text-align: center;
+}
+
+/* Columnas de estadísticas (PTS, VIC, DNF) */
+.statCell {
+  text-align: right;
+  font-weight: 600;
+  font-family: var(--mono);
+  color: var(--text-2);
+}
+
+.waitingRow td {
+  padding: 12px 8px !important; /* Asegura el padding */
+  text-align: center;           /* Centra el contenido */
+}
+
+.waitingCell {
+  /* Elimina display: flex y cualquier otro que rompa la tabla */
+  display: table-cell;          /* Valor por defecto para td */
+  vertical-align: middle;
+}
+
+.waitingYear {
+  font-weight: 700;
+  font-family: var(--mono);
+  color: var(--text-2);
+  margin-right: 12px;
+}
+
+.waitingMessage {
+  font-size: 13px;
+  color: var(--text-3);
+  font-style: italic;
+}
+
+/* Mensaje vacío */
+.emptyMessage {
+  text-align: center;
+  color: var(--text-3);
+  padding: 2rem 0;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .section {
+    padding: 1rem;
+  }
+
+  .table thead th,
+  .table tbody td {
+    padding: 4px 4px;
+    font-size: 11px;
+  }
+
+  .teamName {
+    font-size: 11px;
+    white-space: normal;
+  }
+
+  .teamLogoWrapper {
+    width: 24px;
+    height: 24px;
+  }
+
+  .ratingCell span {
+    font-size: 11px;
+    padding: 2px 6px;
+  }
+
+  .waitingYear {
+    font-size: 12px;
+  }
+
+  .waitingMessage {
+    font-size: 11px;
+  }
+}

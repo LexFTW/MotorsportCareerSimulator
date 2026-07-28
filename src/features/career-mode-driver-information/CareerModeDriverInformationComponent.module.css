@@ -1,0 +1,17 @@
+.main{
+    background: var(--surface);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    border: 1px solid var(--border);
+}
+
+.section{
+    position: relative;
+    padding: 1.25rem 1.25rem 0;
+}
+
+.background{
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
