@@ -8,6 +8,12 @@ export interface Team{
     brand: TeamBrand;
     category: CategoryType;
     style: DriverStyles;
+    ratingRange: TeamRatingRange;
+}
+
+export interface TeamRatingRange {
+    min: number;
+    max: number;
 }
 
 export interface TeamBrand {

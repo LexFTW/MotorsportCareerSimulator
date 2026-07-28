@@ -12,42 +12,86 @@ import podiumImage from '@shared/assets/images/podium.png';
 import noRetirementImage from '@shared/assets/images/no-retirement.png';
 import retirementImage from '@shared/assets/images/retirement.png';
 import forceDrive from '@shared/assets/images/force-drive.png';
-import kartingImage from '@shared/assets/images/karting.png';
-import studyImage from '@shared/assets/images/study.png';
+// import kartingImage from '@shared/assets/images/karting.png';
+// import studyImage from '@shared/assets/images/study.png';
 import { CategoryType } from "@/entities/categories/models/types";
+import { TEAMS } from "@/entities/teams/datasets/data";
+import type { DriverSeasonStats } from "@/entities/drivers/models/types";
+import { getOffers } from "@/shared/lib/offers";
 
 export const DRIVER_SITUATIONS: Situation[] = [
+    // {
+    //     title: 'Inicio en el karting',
+    //     description: 'Tus primeros pasos en el mundo del motorsport comienzan en el karting. A tus 10 años, has demostrado talento y tienes la oportunidad de dar el salto a competiciones nacionales. Tus padres te apoyan, pero los costes son elevados.',
+    //     type: SituationType.DriverSituation,
+    //     trigger: [
+    //         {
+    //             category: CategoryType.F3
+    //         }
+    //     ],
+    //     options: [
+    //         {
+    //             id: 1,
+    //             label: 'Comprometerte al máximo',
+    //             description: 'Decides darlo todo por el sueño de ser piloto. Te inscribes en competiciones nacionales y buscas patrocinadores.',
+    //             image: kartingImage,
+    //             badges: {
+    //                 positive: { text: 'Desarrollo temprano de habilidades', probability: 0.7, value: 3 },
+    //                 negative: { text: 'Alta presión desde joven', probability: 0.3, value: -1 }
+    //             }
+    //         },
+    //         {
+    //             id: 2,
+    //             label: 'Tomarlo con calma',
+    //             description: 'Prefieres compaginar el karting con los estudios, sin presionarte demasiado.',
+    //             image: studyImage,
+    //             badges: {
+    //                 positive: { text: 'Equilibrio y desarrollo personal', probability: 0.6, value: 1 },
+    //                 negative: { text: 'Pérdida de oportunidades tempranas', probability: 0.4, value: -2 }
+    //             }
+    //         }
+    //     ]
+    // },
     {
-        title: 'Inicio en el karting',
-        description: 'Tus primeros pasos en el mundo del motorsport comienzan en el karting. A tus 10 años, has demostrado talento y tienes la oportunidad de dar el salto a competiciones nacionales. Tus padres te apoyan, pero los costes son elevados.',
+        title: 'Fichaje por un equipo de F3',
+        description: 'Comienzas tu carrera profesional. Varios equipos de F3 están interesados en tus servicios.',
         type: SituationType.DriverSituation,
+        condition: (player) => !player.seasonStats || player.seasonStats.length === 0,
         trigger: [
-            {
-                category: CategoryType.F3
-            }
+        { category: CategoryType.F3 },
         ],
-        options: [
-            {
-                id: 1,
-                label: 'Comprometerte al máximo',
-                description: 'Decides darlo todo por el sueño de ser piloto. Te inscribes en competiciones nacionales y buscas patrocinadores.',
-                image: kartingImage,
+        options: (() => {
+            const selectedTeams = getOffers(60, CategoryType.F2);
+            return selectedTeams.map((team, index) => ({
+                id: index + 1,
+                label: team.name,
+                description: `Fichas por ${team.name} en la temporada de ${CategoryType.F2}.`,
+                image: team.brand.logo,
                 badges: {
-                    positive: { text: 'Desarrollo temprano de habilidades', probability: 0.7, value: 3 },
-                    negative: { text: 'Alta presión desde joven', probability: 0.3, value: -1 }
+                positive: { text: 'Comienzo de carrera', probability: 1, value: 0 },
+                },
+                effect: (player) => {
+                    const initialStats: DriverSeasonStats = {
+                        races: 0,
+                        wins: 0,
+                        podiums: 0,
+                        poles: 0,
+                        fastestLaps: 0,
+                        championships: 0,
+                        constructors: 0,
+                        category: CategoryType.F3,
+                        points: 0,
+                        dnfs: 0,
+                        team: team.id,
+                        overall: 0,
+                    };
+                    return {
+                        ...player,
+                        seasonStats: [initialStats], 
+                    };
                 }
-            },
-            {
-                id: 2,
-                label: 'Tomarlo con calma',
-                description: 'Prefieres compaginar el karting con los estudios, sin presionarte demasiado.',
-                image: studyImage,
-                badges: {
-                    positive: { text: 'Equilibrio y desarrollo personal', probability: 0.6, value: 1 },
-                    negative: { text: 'Pérdida de oportunidades tempranas', probability: 0.4, value: -2 }
-                }
-            }
-        ]
+            }));
+        })()
     },
     {
         title: 'Retiro de la competición',

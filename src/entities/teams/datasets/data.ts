@@ -18,6 +18,7 @@ import cadillacLogo from '@shared/assets/logos/f1Teams/cadillac.png'
 import invictaLogo from '@shared/assets/logos/f2Teams/invicta-racing.webp'
 import hitechLogo from '@shared/assets/logos/f2Teams/hitech.png'
 import camposLogo from '@shared/assets/logos/f2Teams/campos-racing.png'
+import artGrandPrixLogo from '@shared/assets/logos/f2Teams/art-gp.png'
 
 export const TEAMS: Team[] = [
     {
@@ -29,6 +30,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#00D2BE',
             logo: mercedesLogo,
+        },
+        ratingRange: {
+            min: 85,
+            max: 99
         }
     },
     {
@@ -40,6 +45,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#DC0000',
             logo: ferrariLogo,
+        },
+        ratingRange: {
+            min: 85,
+            max: 99
         }
     },
     {
@@ -51,6 +60,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#1E41FF',
             logo: redbullLogo,
+        },
+        ratingRange: {
+            min: 85,
+            max: 99
         }
     },
     {
@@ -62,6 +75,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#FF8700',
             logo: mclarenLogo,
+        },
+        ratingRange: {
+            min: 81,
+            max: 99
         }
     },
     {
@@ -73,6 +90,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#006F62',
             logo: astonMartinLogo,
+        },
+        ratingRange: {
+            min: 78,
+            max: 99
         }
     },
     {
@@ -84,6 +105,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#0090FF',
             logo: alpineLogo,
+        },
+        ratingRange: {
+            min: 76,
+            max: 99
         }
     },
     {
@@ -95,6 +120,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#005AFF',
             logo: williamsLogo,
+        },
+        ratingRange: {
+            min: 76,
+            max: 99
         }
     },
     {
@@ -106,6 +135,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#6692FF',
             logo: racingbullsLogo,
+        },
+        ratingRange: {
+            min: 73,
+            max: 99
         }
     },
     {
@@ -117,6 +150,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#E31E24',
             logo: audiLogo,
+        },
+        ratingRange: {
+            min: 73,
+            max: 99
         }
     },
     {
@@ -128,6 +165,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#B6BABD',
             logo: haasLogo,
+        },
+        ratingRange: {
+            min: 70,
+            max: 99
         }
     },
     {
@@ -139,6 +180,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#0072CE',
             logo: cadillacLogo,
+        },
+        ratingRange: {
+            min: 70,
+            max: 99
         }
     },
     // ==================== F2 TEAMS ====================
@@ -151,6 +196,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#FF6600', // Color corporativo de Invicta
             logo: invictaLogo,
+        },
+        ratingRange: {
+            min: 68,
+            max: 74
         }
     },
     {
@@ -162,6 +211,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#1E41FF',
             logo: hitechLogo,
+        },
+        ratingRange: {
+            min: 68,
+            max: 74
         }
     },
     {
@@ -173,6 +226,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#FF0000',
             logo: camposLogo,
+        },
+        ratingRange: {
+            min: 68,
+            max: 74
         }
     },
     {
@@ -184,6 +241,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#0033A0',
             logo: '',
+        },
+        ratingRange: {
+            min: 64,
+            max: 71
         }
     },
     {
@@ -195,6 +256,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#FF6600',
             logo: '',
+        },
+        ratingRange: {
+            min: 64,
+            max: 71
         }
     },
     {
@@ -206,6 +271,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#DC0000',
             logo: '',
+        },
+        ratingRange: {
+            min: 64,
+            max: 71
         }
     },
     {
@@ -217,6 +286,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#FFD700',
             logo: '',
+        },
+        ratingRange: {
+            min: 64,
+            max: 71
         }
     },
     {
@@ -227,7 +300,11 @@ export const TEAMS: Team[] = [
         style: DriverStyles.Balanced,
         brand: {
             color: '#FF1493',
-            logo: '',
+            logo: artGrandPrixLogo,
+        },
+        ratingRange: {
+            min: 64,
+            max: 71
         }
     },
     {
@@ -239,6 +316,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#000000',
             logo: '',
+        },
+        ratingRange: {
+            min: 60,
+            max: 67
         }
     },
     {
@@ -250,6 +331,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#FF6600',
             logo: '',
+        },
+        ratingRange: {
+            min: 60,
+            max: 67
         }
     },
     {
@@ -261,6 +346,10 @@ export const TEAMS: Team[] = [
         brand: {
             color: '#0000FF',
             logo: '',
+        },
+        ratingRange: {
+            min: 60,
+            max: 67
         }
     }
 ]

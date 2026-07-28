@@ -4,34 +4,34 @@ import styles from "./CareerModeDriverDecisionComponent.module.css";
 import { CardDecision } from "@/shared/ui/card-decision";
 import { ButtonDecision } from "@/shared/ui/button-decision";
 import type { SituationOptions } from "@/entities/situations/models/types";
-import { simulateSeason, finishSeason } from "@/entities/seasons/models/seasonSlice";
-import { resolveSituationWithRating } from "@/entities/seasons/models/seasonThunk";
+import { resolveSituation } from "@/entities/seasons/models/seasonThunk";
 
 export function CareerModeDriverDecisionComponent() {
   const dispatch = useAppDispatch();
   const season = useAppSelector((state) => state.season);
-  // const driver = useAppSelector((state) => state.driver.player);
 
   const handleDecision = (option: SituationOptions) => {
-    dispatch(resolveSituationWithRating(option));
-    dispatch(simulateSeason());
-    dispatch(finishSeason())
-  }
+    dispatch(resolveSituation(option)).then(() => {
+    });
+  };
+
+  if (!season.pendingSituation) return null;
 
   return (
     <motion.div animate={{ opacity: 1 }} transition={{ duration: 0.3 }}>
       <div className={styles.decisionContainer}>
         <div className={styles.decisionHeader}>
           <CardDecision
-            title={season.pendingSituation?.title || 'Decisión'}
-            description={season.pendingSituation?.description || ''}
+            title={season.pendingSituation.title}
+            description={season.pendingSituation.description}
           />
         </div>
         <div className={styles.decisionBody}>
           <div className={styles.optionGrid}>
             <AnimatePresence mode="popLayout">
-              {season.pendingSituation?.options.map((option, i) => (
+              {season.pendingSituation.options.map((option, i) => (
                 <motion.div
+                  key={option.id}
                   initial={{ opacity: 0, x: 40 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -40 }}
@@ -39,7 +39,6 @@ export function CareerModeDriverDecisionComponent() {
                   style={{ display: 'contents' }}
                 >
                   <ButtonDecision
-                    key={option.id}
                     label={option.label}
                     title={option.description}
                     image={option.image}
@@ -52,5 +51,5 @@ export function CareerModeDriverDecisionComponent() {
         </div>
       </div>
     </motion.div>
-  )
+  );
 }

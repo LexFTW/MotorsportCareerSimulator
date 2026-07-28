@@ -1,4 +1,5 @@
 import type { CategoryType } from "@/entities/categories/models/types";
+import type { Driver } from "@/entities/drivers/models/types";
 
 export enum SituationType {
     SeasonSituation = 'seasonSituation',
@@ -20,23 +21,32 @@ export interface SituationState{
     situationsUsedPerSeason: number[]
 }
 
-export interface Situation{
-    type: SituationType;
-    title: string;
-    description: string;
-    options: SituationOptions[];
-    trigger: SituationTrigger[];
+export interface Situation {
+  title: string;
+  description: string;
+  type: SituationType;
+  trigger: { category: CategoryType }[];
+  options: SituationOptions[];
+  condition?: (player: Driver) => boolean; // ← nuevo
 }
-
-export interface SituationOptions{
-    id: number;
-    label: string;
-    description?: string;
-    image?: string;
-    badges?: {
-        positive: { text: string; probability?: number, value: number };
-        negative?: { text: string; probability?: number, value: number };
+export interface SituationOptions {
+  id: number;
+  label: string;
+  description: string;
+  image?: string;
+  badges?: {
+    positive?: {
+      text: string;
+      probability: number;
+      value: number;
     };
+    negative?: {
+      text: string;
+      probability: number;
+      value: number;
+    };
+  };
+  effect?: (player: Driver) => Driver; // ← nuevo
 }
 
 export interface SituationTrigger {

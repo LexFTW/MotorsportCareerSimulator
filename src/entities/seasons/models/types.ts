@@ -15,6 +15,9 @@ export interface SeasonState {
   currentSeasonStats: DriverSeasonStats | null;
   historicalSeasonsStats: Record<number, DriverSeasonStats>;
   pendingSituation: Situation | null;
+  seasonSituationCount: number;
+  maxSeasonSituations: number;
+  racesSimulated: number;
 }
 
 export interface Season {

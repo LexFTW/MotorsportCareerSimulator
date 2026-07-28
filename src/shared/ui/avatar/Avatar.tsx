@@ -15,7 +15,7 @@ export const Avatar = ({ label, value, accentColor }: Props) => {
         <main className={styles.main}>
             <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: '4px', background: accentColor }} />
             <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, height: '4px', background: accentColor }} />
-            <div className={styles.shape} style={{ background: hexToRgba(accentColor || 'var(--accent)', 0.06) }} />
+            <div className={styles.shape} style={{ background: hexToRgba(accentColor || 'var(--surface-3)', 0.06) }} />
             <span className={styles.label}>
                 {label || '—'}
             </span>

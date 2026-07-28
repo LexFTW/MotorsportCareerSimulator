@@ -12,17 +12,17 @@ export function CareerModeDriverInformationComponent() {
 
     return (
         <>
-            { driver && currentSeason && team && (
+            { driver && (
                 <main className={styles.main}>
                     <section className={styles.section}>
-                        <div aria-hidden className={styles.background} style={{ background: `linear-gradient(100deg, var(--surface) 45%, ${hexToRgba(team?.brand.color, 0.1) || 'rgba(255,85,61,0.05)'} 100%)` }} />
+                        <div aria-hidden className={styles.background} style={{ background: `linear-gradient(100deg, var(--surface) 45%, ${ team ? hexToRgba(team?.brand.color, 0.1) : 'rgba(255,85,61,0.05)'} 100%)` }} />
                         <div style={{ position: 'relative', display: 'flex', alignItems: 'flex-start', gap: '1rem' }}>
                             {driver && (
                                 <>
                                     <Avatar 
                                         label="OVR" 
                                         value={driver.rating.toString()}
-                                        accentColor={team?.brand.color || 'var(--accent)'} 
+                                        accentColor={team ? team?.brand.color : 'var(--surface-3)'} 
                                         />
 
                                     <div style={{ flex: 1, minWidth: 0 }}>
@@ -35,8 +35,13 @@ export function CareerModeDriverInformationComponent() {
                                             <h3>{driver.identity.name} · {driver.identity.dorsal}</h3>
                                         </div>
                                         <div style={{ fontSize: '11px', color: 'var(--text-2)', marginTop: '2px', textTransform: 'uppercase' as const, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' as const }}>
-                                            <img src={team.brand.logo} alt={team.name} style={{ width: '16px', height: '16px', marginRight: '4px', verticalAlign: 'middle' }} />
-                                            {team.name}
+                                            { team && (
+                                                <>
+                                                    <img src={team.brand.logo} alt={team.name} style={{ width: '16px', height: '16px', marginRight: '4px', verticalAlign: 'middle' }} />
+                                                    {team.name}
+                                                </>
+                                            )}
+                                            
                                         </div>
                                     </div>
 

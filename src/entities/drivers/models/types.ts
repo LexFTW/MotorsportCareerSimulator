@@ -27,7 +27,7 @@ export interface DriverSeasonStats {
     poles: number;
     fastestLaps: number;
     championships: number;
-    constructor: number;
+    constructors: number;
     category: CategoryType;
     points: number;
     dnfs: number;

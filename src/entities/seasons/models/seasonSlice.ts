@@ -3,11 +3,39 @@ import { initialState } from "../datasets/initialState";
 import type { DriverSeasonStats } from "@entities/drivers/models/types";
 import { SeasonStatus } from "./types";
 import { SEASON_SITUATIONS } from "@/entities/situations/datasets/data";
+import { SituationType, type Situation } from "@/entities/situations/models/types";
 
 export const seasonSlice = createSlice({
   name: "season",
   initialState,
   reducers: {
+    startSeason: (state) => {
+      state.status = SeasonStatus.IN_PROGRESS;
+      state.seasonSituationCount = 0;
+      state.maxSeasonSituations = 2;
+    },
+    setPendingSituation: (state, action: PayloadAction<Situation | null>) => {
+      state.pendingSituation = action.payload;
+      if (action.payload) {
+        if (action.payload.type === SituationType.SeasonSituation) {
+          state.status = SeasonStatus.DECISION;
+        }
+      } else {
+        if (state.status === SeasonStatus.DECISION) {
+          state.status = SeasonStatus.IN_PROGRESS;
+        }
+      }
+    },
+    incrementSeasonSituationCount: (state) => {
+      state.seasonSituationCount += 1;
+    },
+    resetSeasonSituationCount: (state) => {
+      state.seasonSituationCount = 0;
+    },
+    simulateRace: (state) => {
+      if (state.status !== SeasonStatus.IN_PROGRESS) return;
+      state.racesSimulated = (state.racesSimulated || 0) + 1;
+    },
     setSeason: (state, action: PayloadAction<number>) => {
       state.currentSeason = action.payload;
     },
@@ -29,9 +57,27 @@ export const seasonSlice = createSlice({
       state.historicalSeasonsStats[state.currentSeason] = { ...state.currentSeasonStats } as DriverSeasonStats;
       state.currentSeasonStats = initialState.currentSeasonStats;
       state.currentSeason += 1;
-    }
+      state.seasonSituationCount = 0;
+      state.racesSimulated = 0;
+      state.pendingSituation = null;
+    },
+    setIdle: (state) => {
+      state.status = SeasonStatus.IDLE;
+    },
   }
 });
 
-export const { setSeason, setSeasonStats, simulateSeason, resolvePendingSituation, finishSeason } = seasonSlice.actions;
+export const { 
+  startSeason, 
+  setSeason, 
+  setSeasonStats, 
+  simulateRace,
+  simulateSeason, 
+  resolvePendingSituation, 
+  finishSeason, 
+  setPendingSituation, 
+  incrementSeasonSituationCount,
+  setIdle 
+} = seasonSlice.actions;
+
 export default seasonSlice.reducer;
