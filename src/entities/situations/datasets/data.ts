@@ -12,9 +12,43 @@ import podiumImage from '@shared/assets/images/podium.png';
 import noRetirementImage from '@shared/assets/images/no-retirement.png';
 import retirementImage from '@shared/assets/images/retirement.png';
 import forceDrive from '@shared/assets/images/force-drive.png';
+import kartingImage from '@shared/assets/images/karting.png';
+import studyImage from '@shared/assets/images/study.png';
 import { CategoryType } from "@/entities/categories/models/types";
 
 export const DRIVER_SITUATIONS: Situation[] = [
+    {
+        title: 'Inicio en el karting',
+        description: 'Tus primeros pasos en el mundo del motorsport comienzan en el karting. A tus 10 años, has demostrado talento y tienes la oportunidad de dar el salto a competiciones nacionales. Tus padres te apoyan, pero los costes son elevados.',
+        type: SituationType.DriverSituation,
+        trigger: [
+            {
+                category: CategoryType.F3
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Comprometerte al máximo',
+                description: 'Decides darlo todo por el sueño de ser piloto. Te inscribes en competiciones nacionales y buscas patrocinadores.',
+                image: kartingImage,
+                badges: {
+                    positive: { text: 'Desarrollo temprano de habilidades', probability: 0.7, value: 3 },
+                    negative: { text: 'Alta presión desde joven', probability: 0.3, value: -1 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Tomarlo con calma',
+                description: 'Prefieres compaginar el karting con los estudios, sin presionarte demasiado.',
+                image: studyImage,
+                badges: {
+                    positive: { text: 'Equilibrio y desarrollo personal', probability: 0.6, value: 1 },
+                    negative: { text: 'Pérdida de oportunidades tempranas', probability: 0.4, value: -2 }
+                }
+            }
+        ]
+    },
     {
         title: 'Retiro de la competición',
         description: 'Los malos resultados en las últimas temporadas te han llevado a considerar el retiro de la competición.',
@@ -179,6 +213,96 @@ export const SEASON_SITUATIONS: Situation[] = [
                 badges: {
                     positive: { text: 'Mejorar el rendimiento del coche', probability: 0.6, value: 1 },
                     negative: { text: 'Riesgo de perder posiciones', probability: 0.4, value: -1 }
+                }
+            }
+        ]
+    },
+    {
+        title: 'Estrategia en óvalo',
+        description: 'Estás compitiendo en un óvalo de alta velocidad. El tráfico es denso y la ventilación del coche se está sobrecalentando.',
+        type: SituationType.SeasonSituation,
+        trigger: [
+            {
+                category: CategoryType.INDYCAR,
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Buscar el rebufo',
+                description: 'Te pones detrás de otro coche para aprovechar el rebufo y ahorrar combustible.',
+                badges: {
+                    positive: { text: 'Ahorro de combustible', probability: 0.7, value: 2 },
+                    negative: { text: 'Riesgo de sobrecalentamiento', probability: 0.3, value: -2 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Mantenerte en aire limpio',
+                description: 'Te mantienes en aire limpio para refrigerar mejor el motor, pero gastas más combustible.',
+                badges: {
+                    positive: { text: 'Motor más fresco', probability: 0.8, value: 1 },
+                    negative: { text: 'Mayor consumo de combustible', probability: 0.2, value: -1 }
+                }
+            }
+        ]
+    },
+    {
+        title: 'Relevo de pilotos - Fatiga en resistencia',
+        description: 'Llevas 2 horas al volante en las 24 Horas. La fatiga empieza a afectar tu rendimiento. El equipo te pregunta si quieres hacer el relevo ahora o esperar.',
+        type: SituationType.SeasonSituation,
+        trigger: [
+            {
+                category: CategoryType.WEC,
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Relevo inmediato',
+                description: 'Decides hacer el relevo para descansar y mantener la concentración.',
+                badges: {
+                    positive: { text: 'Rendimiento óptimo del relevo', probability: 0.9, value: 2 },
+                    negative: { text: 'Pérdida de ritmo en el cambio', probability: 0.1, value: -1 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Alargar el stint',
+                description: 'Aguantas un poco más para maximizar el stint actual.',
+                badges: {
+                    positive: { text: 'Maximizar el stint', probability: 0.4, value: 2 },
+                    negative: { text: 'Riesgo de error por fatiga', probability: 0.6, value: -3 }
+                }
+            }
+        ]
+    },
+    {
+        title: 'Fallo del sistema híbrido (WEC)',
+        description: 'El sistema híbrido de tu prototipo LMP1/Hypercar está dando problemas. La energía eléctrica no se está recuperando correctamente.',
+        type: SituationType.SeasonSituation,
+        trigger: [
+            {
+                category: CategoryType.WEC,
+            }
+        ],
+        options: [
+            {
+                id: 1,
+                label: 'Ajustar el mapa del motor',
+                description: 'Modificas el mapa del motor para compensar la falta de energía eléctrica.',
+                badges: {
+                    positive: { text: 'Compensar la pérdida de potencia', probability: 0.5, value: 1 },
+                    negative: { text: 'Mayor consumo de combustible', probability: 0.5, value: -2 }
+                }
+            },
+            {
+                id: 2,
+                label: 'Entrar a boxes para revisión',
+                description: 'Decides entrar a boxes para que el equipo revise el sistema híbrido.',
+                badges: {
+                    positive: { text: 'Solución definitiva', probability: 0.8, value: 2 },
+                    negative: { text: 'Pérdida de tiempo significativa', probability: 0.2, value: -3 }
                 }
             }
         ]
