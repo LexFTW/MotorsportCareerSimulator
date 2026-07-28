@@ -19,6 +19,9 @@ import invictaLogo from '@shared/assets/logos/f2Teams/invicta-racing.webp'
 import hitechLogo from '@shared/assets/logos/f2Teams/hitech.png'
 import camposLogo from '@shared/assets/logos/f2Teams/campos-racing.png'
 import artGrandPrixLogo from '@shared/assets/logos/f2Teams/art-gp.png'
+import aixRacingLogo from '@shared/assets/logos/f2Teams/aix-racing.png'
+import tridentLogo from '@shared/assets/logos/f2Teams/trident.png'
+import vanAmersfoortLogo from '@shared/assets/logos/f2Teams/van-amersfoort-racing.png'
 
 export const TEAMS: Team[] = [
     {
@@ -315,7 +318,7 @@ export const TEAMS: Team[] = [
         style: DriverStyles.Balanced,
         brand: {
             color: '#000000',
-            logo: '',
+            logo: aixRacingLogo,
         },
         ratingRange: {
             min: 60,
@@ -330,7 +333,7 @@ export const TEAMS: Team[] = [
         style: DriverStyles.Balanced,
         brand: {
             color: '#FF6600',
-            logo: '',
+            logo: vanAmersfoortLogo,
         },
         ratingRange: {
             min: 60,
@@ -345,7 +348,7 @@ export const TEAMS: Team[] = [
         style: DriverStyles.Balanced,
         brand: {
             color: '#0000FF',
-            logo: '',
+            logo: tridentLogo,
         },
         ratingRange: {
             min: 60,

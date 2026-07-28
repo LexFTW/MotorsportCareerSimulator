@@ -34,19 +34,19 @@ export interface SituationOptions {
   label: string;
   description: string;
   image?: string;
-  badges?: {
-    positive?: {
-      text: string;
-      probability: number;
-      value: number;
-    };
-    negative?: {
-      text: string;
-      probability: number;
-      value: number;
-    };
-  };
+  badges?: SituationBadge;
   effect?: (player: Driver) => Driver; // ← nuevo
+}
+
+export interface SituationBadge {
+  positive: SituationBadgeData;
+  negative?: SituationBadgeData;
+}
+
+export interface SituationBadgeData {
+  text: string;
+  probability: number;
+  value: number;
 }
 
 export interface SituationTrigger {

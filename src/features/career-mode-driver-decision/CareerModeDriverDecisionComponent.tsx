@@ -5,14 +5,14 @@ import { CardDecision } from "@/shared/ui/card-decision";
 import { ButtonDecision } from "@/shared/ui/button-decision";
 import type { SituationOptions } from "@/entities/situations/models/types";
 import { resolveSituation } from "@/entities/seasons/models/seasonThunk";
+// import { startSeason } from "@/entities/seasons/models/seasonSlice";
 
 export function CareerModeDriverDecisionComponent() {
   const dispatch = useAppDispatch();
   const season = useAppSelector((state) => state.season);
 
   const handleDecision = (option: SituationOptions) => {
-    dispatch(resolveSituation(option)).then(() => {
-    });
+    dispatch(resolveSituation(option));
   };
 
   if (!season.pendingSituation) return null;
@@ -42,6 +42,7 @@ export function CareerModeDriverDecisionComponent() {
                     label={option.label}
                     title={option.description}
                     image={option.image}
+                    badges={option.badges}
                     onClick={() => handleDecision(option)}
                   />
                 </motion.div>

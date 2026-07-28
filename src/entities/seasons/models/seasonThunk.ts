@@ -1,9 +1,12 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import type { SituationOptions } from "@/entities/situations/models/types";
 import type { RootState } from "@/app/store";
-import { updateDriverRating, addSeasonPoints } from "@/entities/drivers/models/driverSlice";
-import { setPendingSituation, incrementSeasonSituationCount, setSeasonStats } from "./seasonSlice";
+import { updateDriverRating, addSeasonPoints, updateDriverCareer, incrementDriverAge, addSeasonToHistory } from "@/entities/drivers/models/driverSlice";
+import { incrementSeasonSituationCount, setSeasonStats, resolvePendingSituation, simulateRace, simulateSeason, finishSeason } from "./seasonSlice";
 import { SituationType } from "@/entities/situations/models/types";
+import { SeasonStatus } from "./types";
+import { SEASON_SITUATIONS } from "@/entities/situations/datasets/data";
+import { generateSeasonStats } from "@/shared/lib/seasons";
 
 export const resolveSituation = createAsyncThunk(
   'season/resolveSituation',
@@ -44,7 +47,6 @@ export const resolveSituation = createAsyncThunk(
       dispatch(setSeasonStats(updatedPlayer.seasonStats[0]));
     }
 
-    // Dispatch de actualizaciones
     if (ratingDelta !== 0) {
       dispatch(updateDriverRating(ratingDelta));
     }
@@ -52,13 +54,52 @@ export const resolveSituation = createAsyncThunk(
       dispatch(addSeasonPoints(pointsDelta));
     }
 
-    dispatch(setPendingSituation(null));
-
+    dispatch(resolvePendingSituation());
+    
     const currentSituation = state.season.pendingSituation;
     if (currentSituation?.type === SituationType.SeasonSituation) {
       dispatch(incrementSeasonSituationCount());
     }
-
+    
     return { ratingDelta, pointsDelta };
+  }
+);
+
+export const simulateSeasonThunk = createAsyncThunk(
+  'season/simulateSeasonThunk',
+  async (_, { dispatch, getState }) => {
+    const state = getState() as RootState;
+    const season = state.season;
+
+    console.log("Simulating season for player:", state.driver.player?.identity.name, "Current season:", season.currentSeason);
+
+    if(!state.driver.player) return;
+    if (season.status !== SeasonStatus.IN_PROGRESS) return; 
+
+    if(state.season.seasonSituationCount == state.season.maxSeasonSituations) {
+      if(!state.season.currentSeasonStats) return;
+
+      const finalStats = generateSeasonStats(
+        state.driver.player,
+        state.season.currentSeasonStats?.category,
+        state.season.currentSeasonStats?.team
+      );
+
+      console.log("Final season stats generated:", JSON.stringify(finalStats));
+
+      dispatch(updateDriverRating(finalStats.overall));
+      dispatch(updateDriverCareer(finalStats));
+      dispatch(incrementDriverAge());
+      dispatch(addSeasonToHistory(finalStats));
+
+      console.log("Dispatching finishSeason with finalStats:", JSON.stringify(finalStats), "and playerRating:", state.driver.player.rating);
+      dispatch(finishSeason({ finalStats, playerRating: state.driver.player.rating }));
+    }else{
+      const seasonSituations = SEASON_SITUATIONS.filter(s => s.type === SituationType.SeasonSituation && s.trigger.some(t => t.category === state.season.currentSeasonStats?.category));
+      const randomSituation = seasonSituations[Math.floor(Math.random() * seasonSituations.length)];
+      
+      dispatch({ type: 'season/setPendingSituation', payload: randomSituation });
+    }
+
   }
 );

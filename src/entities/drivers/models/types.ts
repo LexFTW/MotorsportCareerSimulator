@@ -33,6 +33,7 @@ export interface DriverSeasonStats {
     dnfs: number;
     team: number;
     overall: number;
+    rating: number;
 }
 
 export interface DriverCareer {

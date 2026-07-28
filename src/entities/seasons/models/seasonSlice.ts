@@ -16,6 +16,7 @@ export const seasonSlice = createSlice({
     },
     setPendingSituation: (state, action: PayloadAction<Situation | null>) => {
       state.pendingSituation = action.payload;
+
       if (action.payload) {
         if (action.payload.type === SituationType.SeasonSituation) {
           state.status = SeasonStatus.DECISION;
@@ -34,6 +35,7 @@ export const seasonSlice = createSlice({
     },
     simulateRace: (state) => {
       if (state.status !== SeasonStatus.IN_PROGRESS) return;
+
       state.racesSimulated = (state.racesSimulated || 0) + 1;
     },
     setSeason: (state, action: PayloadAction<number>) => {
@@ -52,14 +54,22 @@ export const seasonSlice = createSlice({
       state.pendingSituation = null;
       state.status = SeasonStatus.IN_PROGRESS;
     },
-    finishSeason: (state) => {
-      state.status = SeasonStatus.FINISHED;
-      state.historicalSeasonsStats[state.currentSeason] = { ...state.currentSeasonStats } as DriverSeasonStats;
-      state.currentSeasonStats = initialState.currentSeasonStats;
+    finishSeason: (state, action: PayloadAction<{ finalStats: DriverSeasonStats; playerRating: number }>) => {
+      const { finalStats, playerRating } = action.payload;
+
+      const seasonRecord = {
+        ...finalStats,
+        rating: playerRating, // <-- Así guardas el rating en el histórico sin modificar el tipo original
+      };
+
+      state.historicalSeasonsStats[state.currentSeason] = { ...seasonRecord };
+      state.currentSeasonStats = null; // Limpiar para la próxima temporada
       state.currentSeason += 1;
       state.seasonSituationCount = 0;
       state.racesSimulated = 0;
       state.pendingSituation = null;
+      state.status = SeasonStatus.FINISHED;
+
     },
     setIdle: (state) => {
       state.status = SeasonStatus.IDLE;

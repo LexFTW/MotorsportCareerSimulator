@@ -14,7 +14,9 @@ export const driverSlice = createSlice({
     },
     addSeasonToHistory: (state, action: PayloadAction<DriverSeasonStats>) => {
       if (state.player) {
-        state.player.seasonStats.unshift(action.payload);
+        state.player.seasonStats = [action.payload, ...state.player.seasonStats];
+
+        console.log('Added season to history:', JSON.stringify(state.player.seasonStats));
       }
     },
      updateDriverRating: (state, action: PayloadAction<number>) => {

@@ -47,7 +47,7 @@ export function CareerModeHistoryComponent() {
                 year={Number(year)}
                 seasonData={season}
                 team={team}
-                rating={driver.rating}
+                rating={season.rating}
                 opacity={opacity}
               />
             );

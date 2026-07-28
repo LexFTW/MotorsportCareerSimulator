@@ -24,6 +24,8 @@ export interface Season {
     races: number;
     category: CategoryType;
     brand: SeasonBrand;
+    gridSize: number;
+    pointsMap: Record<number, number>;
 }
 
 export interface SeasonBrand {

@@ -19,45 +19,13 @@ import type { DriverSeasonStats } from "@/entities/drivers/models/types";
 import { getOffers } from "@/shared/lib/offers";
 
 export const DRIVER_SITUATIONS: Situation[] = [
-    // {
-    //     title: 'Inicio en el karting',
-    //     description: 'Tus primeros pasos en el mundo del motorsport comienzan en el karting. A tus 10 años, has demostrado talento y tienes la oportunidad de dar el salto a competiciones nacionales. Tus padres te apoyan, pero los costes son elevados.',
-    //     type: SituationType.DriverSituation,
-    //     trigger: [
-    //         {
-    //             category: CategoryType.F3
-    //         }
-    //     ],
-    //     options: [
-    //         {
-    //             id: 1,
-    //             label: 'Comprometerte al máximo',
-    //             description: 'Decides darlo todo por el sueño de ser piloto. Te inscribes en competiciones nacionales y buscas patrocinadores.',
-    //             image: kartingImage,
-    //             badges: {
-    //                 positive: { text: 'Desarrollo temprano de habilidades', probability: 0.7, value: 3 },
-    //                 negative: { text: 'Alta presión desde joven', probability: 0.3, value: -1 }
-    //             }
-    //         },
-    //         {
-    //             id: 2,
-    //             label: 'Tomarlo con calma',
-    //             description: 'Prefieres compaginar el karting con los estudios, sin presionarte demasiado.',
-    //             image: studyImage,
-    //             badges: {
-    //                 positive: { text: 'Equilibrio y desarrollo personal', probability: 0.6, value: 1 },
-    //                 negative: { text: 'Pérdida de oportunidades tempranas', probability: 0.4, value: -2 }
-    //             }
-    //         }
-    //     ]
-    // },
     {
-        title: 'Fichaje por un equipo de F3',
-        description: 'Comienzas tu carrera profesional. Varios equipos de F3 están interesados en tus servicios.',
+        title: `Fichaje en ${CategoryType.F2}`,
+        description: `Comienzas tu carrera profesional. Varios equipos de ${CategoryType.F2} están interesados en tus servicios.`,
         type: SituationType.DriverSituation,
         condition: (player) => !player.seasonStats || player.seasonStats.length === 0,
         trigger: [
-        { category: CategoryType.F3 },
+        { category: CategoryType.F2 },
         ],
         options: (() => {
             const selectedTeams = getOffers(60, CategoryType.F2);
@@ -78,7 +46,7 @@ export const DRIVER_SITUATIONS: Situation[] = [
                         fastestLaps: 0,
                         championships: 0,
                         constructors: 0,
-                        category: CategoryType.F3,
+                        category: CategoryType.F2,
                         points: 0,
                         dnfs: 0,
                         team: team.id,
