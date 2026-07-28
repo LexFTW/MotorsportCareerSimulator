@@ -3,7 +3,6 @@ import { initialState } from "../datasets/initialState";
 import type { DriverSeasonStats } from "@entities/drivers/models/types";
 import { SeasonStatus } from "./types";
 import { SEASON_SITUATIONS } from "@/entities/situations/datasets/data";
-import type { SituationOptions } from "@/entities/situations/models/types";
 
 export const seasonSlice = createSlice({
   name: "season",
@@ -19,7 +18,7 @@ export const seasonSlice = createSlice({
       state.status = Math.random() < 0.5 ? SeasonStatus.DECISION : SeasonStatus.IN_PROGRESS;
       state.pendingSituation = SEASON_SITUATIONS[Math.floor(Math.random() * SEASON_SITUATIONS.length)];
     },
-    resolvePendingSituation: (state, action: PayloadAction<SituationOptions>) => {
+    resolvePendingSituation: (state) => {
       if(!state.currentSeasonStats) return;
 
       state.pendingSituation = null;

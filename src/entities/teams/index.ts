@@ -1,1 +1,1 @@
-export { Team } from './models/types'
+export type { Team } from './models/types'
