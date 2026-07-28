@@ -30,9 +30,9 @@ export function CareerModeDriverTrophiesComponent() {
                                         category={career.category} 
                                         type="driver" />
                                 )}
-                                {career.constructor > 0 && (
+                                {career.constructors > 0 && (
                                     <Trophy 
-                                        count={career.constructor} 
+                                        count={career.constructors} 
                                         category={career.category} 
                                         type="constructor" />
                                 )}
