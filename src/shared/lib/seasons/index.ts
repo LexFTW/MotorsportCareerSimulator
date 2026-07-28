@@ -30,7 +30,7 @@ export function generateSeasonStats(
   const baseFactor = 0.3 + (rating / 100) * 0.6; // 0.3 a 0.9
 
   // Ajuste por equipo: tier 1 -> +0.15, tier 2 -> 0, tier 3 -> -0.1, tier 4 -> -0.2
-  const tierBonus = (4 - tier) * 0.08; // tier1=0.24, tier2=0.16, tier3=0.08, tier4=0
+  const tierBonus = (4 - parseInt(tier.toString())) * 0.08; // tier1=0.24, tier2=0.16, tier3=0.08, tier4=0
   
   // Pequeño factor aleatorio (para variabilidad)
   const randomFactor = (Math.random() - 0.5) * 0.1;
@@ -103,5 +103,6 @@ export function generateSeasonStats(
     dnfs,
     team: teamId,
     overall: overall || 0,
+    rating: player.rating, // Mantener el rating actual del jugador
   };
 }
