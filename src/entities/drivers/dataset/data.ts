@@ -19,7 +19,7 @@ export const DRIVERS: Driver[] = [
                 poles: 103,
                 fastestLaps: 58,
                 championships: 7,
-                constructor: 2,
+                constructors: 2,
                 category: CategoryType.F1,
             }
         ],
@@ -43,7 +43,7 @@ export const DRIVERS: Driver[] = [
                 poles: 20,
                 fastestLaps: 15,
                 championships: 2,
-                constructor: 1,
+                constructors: 1,
                 category: CategoryType.F1,
             }
         ],
@@ -67,7 +67,7 @@ export const DRIVERS: Driver[] = [
                 poles: 5,
                 fastestLaps: 3,
                 championships: 0,
-                constructor: 1,
+                constructors: 1,
                 category: CategoryType.F1,
             }
         ],
