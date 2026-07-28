@@ -10,7 +10,7 @@ import { resolveSituationWithRating } from "@/entities/seasons/models/seasonThun
 export function CareerModeDriverDecisionComponent() {
   const dispatch = useAppDispatch();
   const season = useAppSelector((state) => state.season);
-  const driver = useAppSelector((state) => state.driver.player);
+  // const driver = useAppSelector((state) => state.driver.player);
 
   const handleDecision = (option: SituationOptions) => {
     dispatch(resolveSituationWithRating(option));

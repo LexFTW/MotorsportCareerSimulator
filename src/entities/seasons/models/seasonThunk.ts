@@ -6,7 +6,7 @@ import { updateDriverRating } from "@/entities/drivers/models/driverSlice";
 export const resolveSituationWithRating = createAsyncThunk(
   'season/resolveWithRating',
   async (situation: SituationOptions, { dispatch }) => {    
-    dispatch(resolvePendingSituation(situation));
+    dispatch(resolvePendingSituation());
     dispatch(updateDriverRating(situation.badges?.positive?.value || 0));
     
     return situation;
